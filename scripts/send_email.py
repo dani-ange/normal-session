@@ -20,14 +20,6 @@ def send_email():
     # Attach the email body as plain text
     msg.attach(MIMEText(body, "plain"))
 
-    # Attach the zip
-    part = MIMEBase('application', "octet-stream")
-    with open(zip_path, "rb") as file:
-        part.set_payload(file.read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition', f'attachment; filename="{os.path.basename(zip_path)}"')
-    msg.attach(part)
-
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(sender, password)
@@ -35,8 +27,7 @@ def send_email():
 
 if __name__ == "__main__":
     try:
-        with open("results.json", "r") as f:
-            results = json.load(f)
+       
         subject = "Model Training & Deployment Successful"
         body = (
             f"Model trained and evaluated successfully.\n"
