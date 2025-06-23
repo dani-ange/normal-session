@@ -27,8 +27,23 @@ jobs:
       env:
         HF_TOKEN: ${{secrets.HF_TOKEN}}
         THRESHOLD_SCORE: ${{secrets.THRESHOLD_SCORE}}
-      run: python scripts/deploy.py
+      run: python script/deploy.py
   
+    - name: install email dependences
+      run: |
+       python -m pip install secure-smtplib
+    - name: send mail
+      env:
+       SMTP_SERVER: ${{secrets.SMTP_SERVER}}
+       SMTP_PORT : ${{secrets.SMTP_PORT}}
+       EMAIL_SENDER: ${{secrets.EMAIL_SENDER}}
+       EMAIL_RECEIVER: ${{secrets.EMAIL_RECEIVER}}
+       EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+       
+      run: python scripts/send_email.py
+
   
+
+
 
 
