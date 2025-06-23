@@ -7,8 +7,7 @@ import subprocess
     # --- Hugging Face setup ---
     # Authenticate using HF_TOKEN from environment variable.
 hf_token = os.environ["HF_TOKEN"]
-repo_id = "danielle2003/tp1"  # ⚠️ REPLACE with your actual repo ID
-
+repo_id = "danielle2003/normal-session"  
 if not hf_token:
     raise EnvironmentError("❌ Please set the HF_TOKEN environment variable.")
 
