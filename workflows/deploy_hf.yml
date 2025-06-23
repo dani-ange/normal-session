@@ -29,6 +29,21 @@ jobs:
         THRESHOLD_SCORE: ${{secrets.THRESHOLD_SCORE}}
       run: python script/deploy.py
   
+    - name: install email dependences
+      run: |
+       python -m pip install secure-smtplib
+    - name: send mail
+      env:
+       SMTP_SERVER: ${{secrets.SMTP_SERVER}}
+       SMTP_PORT : ${{secrets.SMTP_PORT}}
+       EMAIL_SENDER: ${{secrets.EMAIL_SENDER}}
+       EMAIL_RECEIVER: ${{secrets.EMAIL_RECEIVER}}
+       EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+       
+      run: python script/send_email.py
+
   
+
+
 
 
