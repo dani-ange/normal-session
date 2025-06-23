@@ -26,8 +26,7 @@ jobs:
     - name: deploy model
       env:
         HF_TOKEN: ${{secrets.HF_TOKEN}}
-        THRESHOLD_SCORE: ${{secrets.THRESHOLD_SCORE}}
-      run: python script/deploy.py
+      run: python scripts/deploy.py
   
     - name: install email dependences
       run: |
